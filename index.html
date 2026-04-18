@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Jordan Alfaqih | Computer System Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <style>
+        /* Custom CSS untuk animasi dan efek tambahan */
+        :root {
+            --primary-color: #209f00;
+            --secondary-color: #14ef00;
+            --accent-color: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animasi fade in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efek gradient teks */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        /* Efek hover untuk kartu */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Timeline style */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+
+        /* Overlay untuk modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animasi untuk hamburger menu */
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Skill badge styling */
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skill progress bar */
+        .skill-bar {
+            height: 10px;
+            background-color: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-green-50 text-gray-800">
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#home" class="text-2xl font-bold gradient-text">Aditya Jordan Alfaqih</a>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Home</a>
+                    <a href="#about"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">About</a>
+                    <a href="#software"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Skills</a>
+                    <a href="#certificates"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Certificates</a>
+                    <a href="#portfolio"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Portfolio</a>
+                    <a href="#gallery"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Gallery</a>
+                    <a href="#contact"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Contact</a>
+                </div>
+
+                <!-- Hamburger Menu (Mobile) -->
+                <div class="md:hidden">
+                    <button id="hamburger-btn" class="hamburger focus:outline-none">
+                        <div class="hamburger-line w-6 h-0.5 bg-green-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-green-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-green-800"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Mobile -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg rounded-lg mt-2 py-4 px-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Home</a>
+                    <a href="#about"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">About</a>
+                    <a href="#software"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Software
+                        Skills</a>
+                    <a href="#certificates"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Certificates</a>
+                    <a href="#portfolio"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Portfolio</a>
+                    <a href="#gallery"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Gallery</a>
+                    <a href="#contact"
+                        class="text-gray-700 hover:text-[#209f00] font-medium transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-green-50 to-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        <span class="gradient-text">Aditya Jordan Alfaqih</span>
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-gray-600 mb-6">Computer System Engineering | Machine Learning
+                        Enthusiast</h2>
+                    <p class="text-gray-700 mb-8 max-w-lg" style="text-align: justify;">
+                        Saya merupakan lulusan S1 Sistem Komputer dari Universitas Komputer Indonesia yang memiliki
+                        minat besar pada bidang pengolahan data, kecerdasan buatan, dan pengembangan sistem berbasis
+                        teknologi. Selama masa studi, saya terbiasa bekerja dengan bahasa pemrograman seperti Python
+                        serta memiliki pengalaman dalam pengolahan data sensor dan pengembangan model prediksi.
+
+                        Sebagai fresh graduate, saya memiliki semangat belajar yang tinggi, mampu bekerja secara mandiri
+                        maupun dalam tim, serta siap menghadapi tantangan di dunia kerja untuk terus berkembang dan
+                        memberikan kontribusi terbaik.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#contact"
+                            class="bg-[#209f00] hover:bg-[#004080] text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center">
+                            <i class="fas fa-envelope mr-2"></i> Hubungi Saya
+                        </a>
+                        <a href="assets/CV/cv.pdf" download="Aditya_Jordan_Alfaqih_CV.pdf" target="_blank"
+                            class="bg-white hover:bg-green-100 text-[#209f00] font-medium py-3 px-6 rounded-lg border border-[#209f00] shadow-md hover:shadow-lg transition-all duration-300 text-center">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center fade-in">
+                    <div class="relative">
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="assets/img/profil.jpeg" alt="Aditya Jordan Alfaqih"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-[#14ef00] text-white py-2 px-4 rounded-lg shadow-lg">
+                            <span class="font-bold">Computer System Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-[#209f00] mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center fade-in">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <div class="bg-gradient-to-br from-green-100 to-blue-50 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold mb-4 text-[#209f00]">Profil</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-graduate text-[#209f00] mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Lulusan</p>
+                                    <p class="text-gray-600">Computer System Engineering</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-[#209f00] mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Alamat</p>
+                                    <p class="text-gray-600">Jl. Pajajaran dlm Selatan No. 198/72
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-[#209f00] mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Spesialisasi</p>
+                                    <p class="text-gray-600">Machine Learning, Internet Of Things (IOT), Computer
+                                        Networking and Software
+                                        Engineering</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="mt-8">
+                        <h4 class="text-lg font-bold mb-4 text-gray-800">Technical Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="skill-badge bg-[#209f00]/10 text-[#209f00] px-3 py-1 rounded-full text-sm">Machine
+                                Learning</span>
+                            <span
+                                class="skill-badge bg-[#209f00]/10 text-[#209f00] px-3 py-1 rounded-full text-sm">Internet
+                                Of Things (IOT)</span>
+                            <span
+                                class="skill-badge bg-[#209f00]/10 text-[#209f00] px-3 py-1 rounded-full text-sm">Computer
+                                Networking</span>
+                            <span
+                                class="skill-badge bg-[#209f00]/10 text-[#209f00] px-3 py-1 rounded-full text-sm">Software
+                                Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Ringkasan Profesional</h3>
+                    <p class="text-gray-700 mb-4" style="text-align: justify;">
+                        Lulusan S1 Sistem Komputer dari Universitas Komputer Indonesia dengan fokus pada pengolahan data
+                        dan kecerdasan buatan.
+                        Memiliki kompetensi teknis dalam pemrograman Python, analisis data, serta pengembangan model
+                        machine learning berbasis data sensor.
+                        Berpengalaman dalam membangun model prediksi menggunakan metode LSTM dengan memanfaatkan data
+                        seperti suhu, kelembaban,
+                        kecepatan angin, dan curah hujan.
+                    </p>
+                    <p class="text-gray-700 mb-6" style="text-align: justify;">
+                        Memahami proses preprocessing data, normalisasi, serta evaluasi model menggunakan metrik seperti
+                        MAE dan RMSE.
+                        Memiliki pengalaman dalam implementasi model ke dalam aplikasi berbasis GUI seperti Tkinter dan
+                        Streamlit.
+                        Terbiasa bekerja secara analitis, teliti, dan adaptif terhadap teknologi baru, serta mampu
+                        bekerja secara mandiri
+                        maupun dalam tim untuk menghasilkan solusi berbasis data yang efektif.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-cogs text-[#209f00]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Machine Learning</h4>
+                                <p class="text-sm text-gray-600">Perancangan & Impelementasi model Machine Learning</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-cube text-[#209f00]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Internet Of Things (IOT)</h4>
+                                <p class="text-sm text-gray-600">Automasi & Perancangan Perangkat berbasis
+                                    Micro Controller</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-bar text-[#209f00]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Computer Networking</h4>
+                                <p class="text-sm text-gray-600">Perancangan Jaringan Komputer</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-bar text-[#209f00]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Software Engineering</h4>
+                                <p class="text-sm text-gray-600">Pengembangan Perangkat Lunak</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="software" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
+                <div class="w-20 h-1 bg-[#209f00] mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+
+                <!-- Python -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-drafting-compass text-[#209f00] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Python</h3>
+                                    <p class="text-gray-600 text-sm">Programming Language</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#209f00]">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Dapat memanfaatkan untuk Machine Learning Development, Internet Of Things,
+                                Data Analysis and Software Engineering
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arduino -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cube text-[#209f00] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Arduino</h3>
+                                    <p class="text-gray-600 text-sm">Micro Controller & Integrated Development
+                                        Environment (IDE)</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#209f00]">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Mengembangkan perangkat cerdas berbasis IOT dan automasi perangkat
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHP -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cogs text-[#209f00] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">PHP</h3>
+                                    <p class="text-gray-600 text-sm">Web Backend Programming Language</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#209f00]">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Pemrograman web untuk kebutuhan pengembangan API dan Backend
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eagle -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cogs text-[#209f00] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Eagle</h3>
+                                    <p class="text-gray-600 text-sm">Printed Circuit Board (PCB) Design Software</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#209f00]">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Mampu membuat dan merancang Printed Circuit Board (PCB)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cisco -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#209f00]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cogs text-[#209f00] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Cisco Packet Tracer</h3>
+                                    <p class="text-gray-600 text-sm">Networking Simulator, Design & Tracing Software</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#209f00]">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Akses konektifitas jaringan, keamanan, ketersediaan, menyediakan IP Services, Routing &
+                                Switching dan Wireless LAN
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-16 bg-green-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Sertifikasi
+                </h2>
+                <div class="w-20 h-1 bg-[#209f00] mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Dokumentasi partisipasi kegiatan industri, seminar akademik,
+                    sertifikasi profesional, serta pengalaman organisasi di bidang komputer jaringan, pendidikan dan
+                    sistem komputer.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Certificate 1 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif1.jpeg" alt="Asisten Laboratorium Sistem Digital"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Asisten Laboratorium Sistem Digital
+                            </h3>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Berperan sebagai asisten laboratorium pada mata praktikum Sistem Digital di Universitas
+                                Komputer Indonesia. Bertanggung jawab membantu proses pembelajaran praktikum, membimbing
+                                mahasiswa, serta memastikan pelaksanaan praktikum berjalan dengan baik. Pengalaman ini
+                                meningkatkan kemampuan komunikasi, pemahaman konsep sistem digital, serta kerja tim.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2023</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif1.jpeg')"
+                                class="bg-[#209f00] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif1.pdf" target="_blank"
+                                class="bg-green-200 hover:bg-green-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif2.jpeg" alt="Pelatihan Service HP – Disnaker Kota Bandung"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Pelatihan Service HP – Disnaker Kota Bandung
+                            </h3>
+
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Mengikuti pelatihan teknis perbaikan perangkat handphone yang diselenggarakan oleh Dinas
+                                Ketenagakerjaan Kota Bandung. Memperoleh pemahaman mengenai diagnosa kerusakan,
+                                perbaikan hardware, serta dasar troubleshooting perangkat elektronik. Pengalaman ini
+                                memperkuat keterampilan teknis dan problem solving di bidang perangkat keras.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2023</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif2.jpeg')"
+                                class="bg-[#209f00] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif2.pdf" target="_blank"
+                                class="bg-green-200 hover:bg-green-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif3.jpeg"
+                                alt="Sertifikat Pendidikan – Pondok Pesantren Wali Barokah"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Sertifikat Pendidikan – Pondok Pesantren Wali Barokah
+                            </h3>
+
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Telah menyelesaikan pendidikan di Pondok Pesantren Wali Barokah dengan fokus pada bidang
+                                akuntansi dan manajemen. Pengalaman ini membentuk karakter disiplin, tanggung jawab,
+                                serta kemampuan manajemen dasar yang mendukung pengembangan diri secara profesional.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2020</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif3.jpeg')"
+                                class="bg-[#209f00] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif3.pdf" target="_blank"
+                                class="bg-green-200 hover:bg-green-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 4 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif4.jpeg"
+                                alt="CCNAv7: Introduction to Networks – Cisco Networking Academy"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                CCNAv7: Introduction to Networks – Cisco Networking Academy
+                            </h3>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Menyelesaikan program CCNAv7: Introduction to Networks dari Cisco Networking Academy.
+                                Mempelajari dasar-dasar jaringan komputer seperti konfigurasi jaringan, IP addressing,
+                                routing, switching, serta konsep keamanan jaringan. Sertifikasi ini menunjukkan
+                                pemahaman fundamental dalam bidang networking.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif4.jpeg')"
+                                class="bg-[#209f00] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif4.pdf" target="_blank"
+                                class="bg-green-200 hover:bg-green-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <p class="text-gray-600">
+                    Total <span class="font-bold text-[#209f00]">4 Sertifikat telah diperoleh
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Certificate View -->
+    <div id="certificateModal"
+        class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-xl font-bold text-gray-800">Detail Sertifikat</h3>
+                <button onclick="closeCertificateModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4 overflow-auto max-h-[80vh]">
+                <img id="modalCertificateImage" src="" alt="Certificate" class="w-full h-auto rounded-md">
+            </div>
+            <div class="p-4 border-t text-right">
+                <button onclick="closeCertificateModal()"
+                    class="bg-green-300 hover:bg-green-400 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Certificate Modal -->
+    <script>
+        function openCertificateModal(imageSrc) {
+            const modal = document.getElementById('certificateModal');
+            const modalImage = document.getElementById('modalCertificateImage');
+
+            modalImage.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('certificateModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeCertificateModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeCertificateModal();
+            }
+        });
+    </script>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Portfolio Proyek</h2>
+                <div class="w-20 h-1 bg-[#209f00] mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Kumpulan proyek yang telah saya
+                    kerjakan
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Project 1 -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col">
+                        <div class="h-48 bg-white flex items-center justify-center p-4">
+                            <img src="assets/img/portofolio/porto1.jpeg" alt="Battery Assembly for Electric Golfcar"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">Battery Assembly for Electric Golfcar</h3>
+                            <p class="text-gray-700 mb-3 text-sm">Worked Collaboratively within Assembly Process from
+                                Electric Golfcar</p>
+                        </div>
+                        <div class="px-5 pb-5">
+                            <a href="https://colab.research.google.com/drive/1LN-tNftDwS8jqmoEqyU8U_FD8nIQjpAJ?usp=sharing"
+                                target="_blank"
+                                class="block w-full bg-[#209f00] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-eye mr-2"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 fade-in">
+                    <p class="text-gray-600">Total <span class="font-bold text-[#209f00]">1 Proyek</span> telah berhasil
+                        diselesaikan</p>
+                </div>
+            </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-[#209f00] to-[#14ef00] text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hubungi Saya</h2>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto"></div>
+                <p class="mt-4 max-w-2xl mx-auto">Saya terbuka untuk peluang karir, proyek kolaborasi, atau diskusi
+                    tentang sistem komputer, machine learning, software dan jaringan komputer</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Informasi Kontak</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Nama</h4>
+                                <p>Aditya Jordan Alfaqih</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Jurusan</h4>
+                                <p>Computer System Engineering</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Alamat</h4>
+                                <p>Jl. Pajajaran dlm Selatan No. 198/72</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Email</h4>
+                                <p>adityajordan6@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Section -->
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">WhatsApp</h4>
+                                <p>085795128880</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-bold text-lg mb-4">Ikuti Saya</h4>
+                        <div class="flex space-x-4">
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/in/adityajordan6/" target="_blank"
+                                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="https://www.instagram.com/aditya.jordan" target="_blank"
+                                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <!-- Email -->
+                            <a href="mailto:adityajordan6@gmail.com" target="_blank"
+                                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8">
+                        <h3 class="text-2xl font-bold mb-6">Download CV</h3>
+                        <p class="mb-8">Unduh CV lengkap saya untuk informasi lebih detail tentang pendidikan,
+                            pengalaman proyek, dan keterampilan teknis yang saya miliki.</p>
+
+                        <div class="bg-white/20 rounded-lg p-6 mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-white/30 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-file-pdf text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">CV Aditya Jordan Alfaqih</h4>
+                                    <p class="text-sm">Format PDF - Terbaru</p>
+                                </div>
+                            </div>
+                            <p class="text-sm mb-6">CV ini berisi informasi lengkap tentang latar belakang pendidikan,
+                                pengalaman proyek di bidang machine learning, jaringan komputer, software engineering,
+                                IOT dan pencapaian
+                                saya.</p>
+                            <a href="assets/CV/cv.pdf" download="Aditya_Jordan_Alfaqih_CV.pdf" target="_blank"
+                                class="inline-flex items-center bg-white text-[#209f00] font-bold py-3 px-6 rounded-lg hover:bg-green-100 transition-colors duration-300">
+                                <i class="fas fa-download mr-3"></i> Download CV (PDF)
+                            </a>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Atau kirim pesan</h4>
+                            <p class="mb-6">Jika Anda ingin berdiskusi tentang peluang kerja, proyek kolaborasi, atau
+                                konsultasi teknik, silakan hubungi saya melalui email atau WhatsApp.</p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="mailto:adityajordan6@gmail.com"
+                                    class="inline-flex items-center justify-center bg-yellow-500 text-[#209f00] font-bold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors duration-300">
+                                    <i class="fas fa-paper-plane mr-3"></i> Kirim Email
+                                </a>
+                                <a href="https://wa.me/6285795128880" target="_blank"
+                                    class="inline-flex items-center justify-center bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-colors duration-300">
+                                    <i class="fab fa-whatsapp mr-3"></i> Chat WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold gradient-text">Aditya Jordan Alfaqih</h3>
+                    <p class="text-gray-400 mt-2">Computer System Engineering | Machine Learning
+                        Enthusiast</p>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© 2026 Aditya Jordan Alfaqih. All rights reserved.</p>
+                    <p class="text-gray-500 text-sm mt-2">Portofolio Pribadi - Siap untuk Peluang Karir di Bidang Sistem
+                        Komputer, Machine Learning, IOT, Jaringan Komputer dan Software Engineering</p>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>Website ini dibuat dengan HTML, Tailwind CSS, dan JavaScript Vanilla</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js"></script>
+    <script>
+        // Function to open project detail (placeholder)
+        function openProjectDetail(projectId) {
+            alert('Detail untuk proyek ' + projectId + ' akan ditampilkan di sini. Fitur ini dalam pengembangan.');
+        }
+
+        // Existing JavaScript code for animations, modals, etc.
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fade in animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // Mobile menu toggle
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (hamburgerBtn && mobileMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    hamburgerBtn.classList.toggle('active');
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+
+            // Video modal functionality
+            const videoModal = document.getElementById('video-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const videoFrame = document.getElementById('video-frame');
+
+            function openModal(videoId) {
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                videoFrame.src = '';
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            window.openModal = openModal;
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeModal();
+                }
+            });
+
+            // Animate skill bars on scroll
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 100);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => skillObserver.observe(bar));
+        });
+    </script>
+</body>
+
+</html>
